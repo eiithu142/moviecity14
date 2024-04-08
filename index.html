@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Number Display</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Live Number Display</h1>
+  <div id="numberDisplay" class="number">00</div>
+  <div id="savedNumber" class="saved-number"></div>
+</div>
+
+<script >
+    // Function to format number with leading zeros
+function formatNumber(num) {
+  return num.toString().padStart(2, '0');
+}
+
+// Function to update the displayed number every 6 seconds
+function updateNumber() {
+  const currentTime = new Date();
+  const currentHour = currentTime.getHours();
+  const currentMinute = currentTime.getMinutes();
+  const currentSecond = currentTime.getSeconds();
+  
+  // Check if current time is before 12:01 PM or 20:01 PM
+  if ((currentHour === 15 && currentMinute === 36) || (currentHour === 15 && currentMinute === 38)) {
+    // Save the current displayed number
+    const savedNumber = document.getElementById("numberDisplay").textContent;
+    document.getElementById("savedNumber").textContent = `Saved Number: ${savedNumber}`;
+  } else {
+    // Generate a random number between 0 and 99
+    const randomNumber = Math.floor(Math.random() * 100);
+    
+    // Format the number with leading zeros
+    const formattedNumber = formatNumber(randomNumber);
+    
+    // Update the displayed number
+    document.getElementById("numberDisplay").textContent = formattedNumber;
+  }
+  
+  // Call updateNumber function every 6 seconds
+  setTimeout(updateNumber, 6000);
+}
+
+// Call updateNumber function initially
+updateNumber();
+
+</script>
+</body>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.number {
+  font-size: 48px;
+  color: #333;
+}
+
+.saved-number {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #666;
+}
+
+</style>
+</html>

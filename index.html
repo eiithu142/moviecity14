@@ -28,7 +28,7 @@ function updateNumber() {
   const currentSecond = currentTime.getSeconds();
   
   // Check if current time is before 12:01 PM or 20:01 PM
-  if ((currentHour === 15 && currentMinute === 36) || (currentHour === 15 && currentMinute === 43) {
+  if ((currentHour === 15 && currentMinute === 36) || (currentHour === 15 && currentMinute === 45) {
     // Save the current displayed number
     const savedNumber = document.getElementById("numberDisplay").textContent;
     document.getElementById("savedNumber").textContent = `Saved Number: ${savedNumber}`;
